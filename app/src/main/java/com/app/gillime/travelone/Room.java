@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +28,7 @@ public class Room extends AppCompatActivity {
     private FirebaseUser user;
     private ArrayList<String> list;
     private ListView lv;
+    private ArrayAdapter<String> aA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,18 +54,21 @@ public class Room extends AppCompatActivity {
         String keyReceived = b.getString("key");
         mDatabase = FirebaseDatabase.getInstance().getReference();
         list = new ArrayList<String>();
+        aA = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
 
 
-        if(keyReceived == null){
-            String key = mDatabase.child("group").push().getKey();
+        if (keyReceived == null) {
+            System.out.println("in null");
+            String key = mDatabase.child("group").child("invitee").push().getKey();
             Group group = new Group(user.getUid(), name, userName);
             Map<String, Object> childUpdates = new HashMap<>();
             childUpdates.put("/group/" + key, group);
             mDatabase.updateChildren(childUpdates);
             list.add(userName);
 
-        }
-        else{
+        } else {
+            System.out.println("nont in null");
+
             mDatabase.child("group").child(keyReceived).push();
             Join join = new Join(userName);
             DatabaseReference newD = mDatabase.child("group").child(keyReceived).push();
@@ -75,14 +80,34 @@ public class Room extends AppCompatActivity {
         }
 
 
+        ChildEventListener cE = new ChildEventListener() {
 
-        ValueEventListener listadd = new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot namesnap : dataSnapshot.getChildren()) {
-                    String name = (String) namesnap.child("name").getValue();
-                    list.add(name);
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Join join = dataSnapshot.getValue(Join.class);
+                System.out.println(join.getInvitee());
+                if(join.getInvitee()!=null){
+                    list.add(join.getInvitee());
+                    aA.notifyDataSetChanged();
+
                 }
+
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override
@@ -90,13 +115,26 @@ public class Room extends AppCompatActivity {
 
             }
         };
-        mDatabase.addValueEventListener(listadd);
+        mDatabase.addChildEventListener(cE);
+//        ValueEventListener listadd = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot namesnap : dataSnapshot.getChildren()) {
+//                    String name = (String) namesnap.child("name").getValue();
+//                    list.add(name);
+//                  //aA.notifyDataSetChanged();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        };
+//        mDatabase.addValueEventListener(listadd);
 
         lv = (ListView) findViewById(R.id.grouplist);
-        ArrayAdapter<String> aA = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
         lv.setAdapter(aA);
-
-
 
 
     }
