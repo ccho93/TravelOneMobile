@@ -5,19 +5,21 @@ package com.app.gillime.travelone;
  */
 
 public class Join {
-    private String invitee;
-    public Join(){
+    private String inviteeName;
+
+    public Join() {
 
     }
-    public Join(String invitee){
-        this.invitee = invitee;
+
+    public Join(String invitee) {
+        this.inviteeName = invitee;
     }
 
     public String getInvitee() {
-        return invitee;
+        return inviteeName;
     }
 
     public void setInvitee(String invitee) {
-        this.invitee = invitee;
+        this.inviteeName = invitee;
     }
 }
