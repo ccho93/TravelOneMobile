@@ -66,7 +66,7 @@ public class Room extends AppCompatActivity {
         else{
             mDatabase.child("group").child(keyReceived).push();
             Join join = new Join(userName);
-            DatabaseReference newD = mDatabase.child(keyReceived).push();
+            DatabaseReference newD = mDatabase.child("group").child(keyReceived).push();
             newD.setValue(join);
 //            Map<String, Object> childUpdates = new HashMap<>();
 //            childUpdates.put("/group/"+keyReceived,join);
