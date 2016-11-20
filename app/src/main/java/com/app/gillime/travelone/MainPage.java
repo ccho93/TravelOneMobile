@@ -61,7 +61,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
         mDatabase.addValueEventListener(userListener);
         hello = (TextView)findViewById(R.id.hello);
         findViewById(R.id.create).setOnClickListener(this);
-
+        findViewById(R.id.join).setOnClickListener(this);
 
     }
 
@@ -95,7 +95,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
 
 
 
-        }else if(i == R.id.create){
+        }else if(i == R.id.join){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             final EditText group = new EditText(this);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
