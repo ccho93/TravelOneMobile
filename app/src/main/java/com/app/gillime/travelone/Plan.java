@@ -52,7 +52,7 @@ public class Plan extends Fragment implements AdapterView.OnItemSelectedListener
 
     private OnFragmentInteractionListener mListener;
     private String selectedLocation;
-    private String selectedHotel;
+    private String selectedHotel = "Trump";
     private String globalKey;
 
     public Plan() {
@@ -145,7 +145,18 @@ public class Plan extends Fragment implements AdapterView.OnItemSelectedListener
         hotelAd = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, hotel);
         hotelAd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         hotelSpin.setAdapter(hotelAd);
-        hotelSpin.setOnItemSelectedListener(this);
+        hotelSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                System.out.println("here");
+                selectedHotel = (String) adapterView.getItemAtPosition(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         dA = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, mParam1);
         dA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -184,8 +195,6 @@ public class Plan extends Fragment implements AdapterView.OnItemSelectedListener
         if (spin.getId() == R.id.location) {
             selectedLocation = (String) adapterView.getItemAtPosition(i);
 
-        } else if (spin.getId() == R.id.hotel) {
-            selectedHotel = (String) adapterView.getItemAtPosition(i);
         }
 
 
@@ -211,6 +220,8 @@ public class Plan extends Fragment implements AdapterView.OnItemSelectedListener
             DatabaseReference d = FirebaseDatabase.getInstance().getReference().child("group").child(globalKey);
             childUpdates.put("/request/", r);
             d.updateChildren(childUpdates);
+            getActivity().getFragmentManager().beginTransaction().remove(Plan.this).commit();
+
 
         }
     }

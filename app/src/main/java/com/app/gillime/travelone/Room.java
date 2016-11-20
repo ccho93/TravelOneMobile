@@ -41,6 +41,7 @@ public class Room extends AppCompatActivity implements Plan.OnFragmentInteractio
     private Button plan;
     private ArrayList<String> hotel;
     private ArrayList<String> location;
+    private Button accept;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,32 @@ public class Room extends AppCompatActivity implements Plan.OnFragmentInteractio
             childUpdates.put("/group/" + keyReceived + "/invitee/" + key, join);
             mDatabase.updateChildren(childUpdates);
             globalKey = key;
+            plan.setVisibility(View.GONE);
             list.add(userName);
+            DatabaseReference newref = FirebaseDatabase.getInstance().getReference().child("request");
+
+
+            ValueEventListener listadd = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot namesnap : dataSnapshot.getChildren()) {
+                        Request r = (Request) namesnap.getValue();
+//                        System.out.println((String) namesnap.getValue());
+//                        location.add((String) namesnap.getValue());
+                        System.out.println(r.getHotel());
+                        //     list.add(name);
+                        //aA.notifyDataSetChanged();
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+            newref.addValueEventListener(listadd);
+
         }
 
 
