@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "134265490085",
+    "firebase_url": "https://travelone-e43cb.firebaseio.com",
+    "project_id": "travelone-e43cb",
+    "storage_bucket": "travelone-e43cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134265490085:android:bb9deaec1a60412d",
+        "android_client_info": {
+          "package_name": "com.app.gillime.travelone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134265490085-93ul9vibgk3c8vidi70nn9ldi0p96h40.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.gillime.travelone",
+            "certificate_hash": "26FDD2257544FB097C3D044F32C63EBB3B2AECAE"
+          }
+        },
+        {
+          "client_id": "134265490085-j4ui6pnju4r6c4eaopg9qj64j67vfqq8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdktNR6PVbXX1aKGW2QzB-pM7em6UEBBU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134265490085-j4ui6pnju4r6c4eaopg9qj64j67vfqq8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

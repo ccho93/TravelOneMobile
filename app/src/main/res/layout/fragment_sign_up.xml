@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+
+    tools:context="com.app.gillime.travelone.SignUp">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:text="Register!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="142dp"
+        android:id="@+id/RegButton" />
+
+    <TextView
+        android:text="Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RegName"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/RegPass"
+        android:layout_alignStart="@+id/RegPass" />
+
+    <TextView
+        android:text="Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RegPass"
+        android:layout_above="@+id/RegName"
+        android:layout_alignLeft="@+id/RegEmail"
+        android:layout_alignStart="@+id/RegEmail"
+        android:layout_marginBottom="45dp" />
+
+    <TextView
+        android:text="Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="54dp"
+        android:layout_marginStart="54dp"
+        android:id="@+id/RegEmail"
+        android:layout_above="@+id/RegPass"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="43dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/RegEmailEdit"
+        android:layout_alignBaseline="@+id/RegEmail"
+        android:layout_alignBottom="@+id/RegEmail"
+        android:layout_toRightOf="@+id/RegPass"
+        android:layout_toEndOf="@+id/RegPass" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/RegNameEdit"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/RegPass"
+        android:layout_toEndOf="@+id/RegPass" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/RegPassEdit"
+        android:layout_alignBottom="@+id/RegPass"
+        android:layout_toRightOf="@+id/RegPass"
+        android:layout_toEndOf="@+id/RegPass" />
+
+</RelativeLayout>
